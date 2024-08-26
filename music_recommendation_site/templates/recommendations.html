@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recomendações</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <!-- Link para a página inicial -->
+      <a href="{{ url_for('index') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Spotify">
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Recomendações Personalizadas</h1>
+      <section class="recommendations">
+        <h2>Principais Recomendações</h2>
+        <div class="recommendation-cards">
+          {% for track in tracks %}
+            <div class="recommendation-card">
+              <img src="{{ track.album_art }}" alt="Álbum">
+              <div class="track-info">
+                <h3>{{ track.titulo }}</h3>
+                <p>{{ track.artista }}</p>
+                <p>{{ track.album }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Seu Site de Recomendações</p>
+  </footer>
+</body>
+</html>

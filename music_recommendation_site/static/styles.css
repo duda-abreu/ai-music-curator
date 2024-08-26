@@ -1,0 +1,111 @@
+/* Definições de cores */
+:root {
+    --primary-color: #1db954; /* Verde Spotify */
+    --background-color: #000; /* Preto */
+    --card-background-color: #1e1e1e; /* Fundo dos cards */
+    --text-color: #fff; /* Branco */
+    --highlight-color: #1db954; /* Verde Spotify para destaques */
+  }
+  
+  /* Estilos globais */
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--background-color); /* Cor de fundo escura */
+    color: var(--text-color); /* Cor do texto */
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: var(--primary-color); /* Verde Spotify */
+    color: var(--background-color); /* Cor do texto no cabeçalho */
+    padding: 0.5rem 1rem; /* Padding menor para o cabeçalho */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  header .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  header .logo img {
+    height: 40px; /* Tamanho do ícone do Spotify ajustado para o valor anterior */
+    width: auto; /* Mantém a proporção */
+    margin-right: 1rem; /* Espaço entre o ícone e o texto */
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 1.8rem; /* Tamanho da fonte do cabeçalho ajustado para o valor anterior */
+  }
+  
+  main {
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.recommendations h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Cartões de recomendação */
+.recommendation-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.recommendation-card {
+    background-color: var(--card-background-color);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.recommendation-card:hover {
+    transform: scale(1.05);
+}
+
+.recommendation-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.track-info {
+    padding: 0.5rem;
+}
+
+.track-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.track-info p {
+    margin: 0.2rem 0;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
