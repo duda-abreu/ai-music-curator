@@ -1,6 +1,7 @@
-## descrição
-esse repositório ainda está em **CONSTRUÇÃO**!
-![Duck work](media.giphy.com/media/JWybLzXs7Hn0JKhSji/giphy.gif)
+## Descrição
 
-estou desenvolvendo uma aplicação para sugerir música com base nos seus gostos usando *python* e *machine learning* com base na web api do próprio spotify
+Este repositório ainda está em **CONSTRUÇÃO**!  
+![Duck work](https://media.giphy.com/media/JWybLzXs7Hn0JKhSji/giphy.gif)
+
+Estou desenvolvendo uma aplicação para sugerir músicas com base nos seus gostos usando *Python* e *Machine Learning*, utilizando a Web API do próprio Spotify.
 
