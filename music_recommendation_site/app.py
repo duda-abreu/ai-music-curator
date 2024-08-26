@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+from ml_model import recommend_songs, connect_db, load_music_data
 import psycopg2
 
 app = Flask(__name__)
@@ -85,10 +86,14 @@ def recommend():
             query = " OR ".join(f"genre:{genre}" for genre in genres)
         else:
             query = "pop"
+    
+# Carregar dados das músicas dentro da função recommend
+    music_df = load_music_data()
+    
+    # Usando a música mais popular como base para recomendação
+    recommended_tracks = recommend_songs(music_df['id'].mode()[0])  # substitua com ID adequado
 
-    recommended_tracks = search_tracks(query)
-
-    return render_template('recommendations.html', tracks=recommended_tracks)
+    return render_template('recommendations.html', tracks=recommended_tracks.to_dict(orient='records'))
 
 if __name__ == '__main__':
     app.run(debug=True)
