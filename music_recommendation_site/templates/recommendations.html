@@ -9,7 +9,6 @@
 <body>
   <header>
     <div class="logo">
-      <!-- Link para a página inicial -->
       <a href="{{ url_for('index') }}">
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Spotify">
       </a>
@@ -24,7 +23,7 @@
         <div class="recommendation-cards">
           {% for track in tracks %}
             <div class="recommendation-card">
-              <img src="{{ track.album_art }}" alt="Álbum">
+              <img src="{{ track.album_image_url }}" alt="Álbum">
               <div class="track-info">
                 <h3>{{ track.titulo }}</h3>
                 <p>{{ track.artista }}</p>
@@ -38,7 +37,8 @@
   </main>
 
   <footer>
-    <p>&copy; 2024 Seu Site de Recomendações</p>
+    <p>&copy; 2024 Site de Recomendações</p>
   </footer>
 </body>
 </html>
+

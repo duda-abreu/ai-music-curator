@@ -1,32 +1,34 @@
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
+from sqlalchemy import create_engine
 import psycopg2
 
-# Função para conectar ao banco de dados
 def connect_db():
-    return psycopg2.connect(
-        dbname="recomendador_musicas",
-        user="postgres",
-        password="1234",
-        host="localhost"
-    )
+    return create_engine('postgresql://postgres:1234@localhost/recomendador_musicas')
 
-# Função para carregar dados das músicas
 def load_music_data():
-    conn = connect_db()
+    engine = connect_db()
     query = "SELECT id, titulo, artista, album, genero FROM Musicas"
-    df = pd.read_sql(query, conn)
-    conn.close()
+    try:
+        df = pd.read_sql(query, engine)
+        print(df.head())  # Verifica os dados carregados
+    except Exception as e:
+        print(f"Erro ao carregar dados: {e}")
+        df = pd.DataFrame()
     return df
 
-# Carregar dados e criar o modelo
+# Criação do DataFrame e modelo de recomendação
 music_df = load_music_data()
-music_df['content'] = music_df['titulo'] + ' ' + music_df['artista'] + ' ' + music_df['genero'].apply(lambda x: ' '.join(x))
+music_df['content'] = music_df['titulo'].fillna('') + ' ' + music_df['artista'].fillna('') + ' ' + music_df['genero'].fillna('').astype(str)
 tfidf_vectorizer = TfidfVectorizer(stop_words='english')
 tfidf_matrix = tfidf_vectorizer.fit_transform(music_df['content'])
 
 def recommend_songs(song_id, top_n=10):
+    if song_id not in music_df['id'].values:
+        print(f"ID da música {song_id} não encontrado.")
+        return pd.DataFrame()
+    
     idx = music_df.index[music_df['id'] == song_id].tolist()[0]
     cosine_similarities = linear_kernel(tfidf_matrix[idx:idx+1], tfidf_matrix).flatten()
     related_indices = cosine_similarities.argsort()[:-top_n-1:-1]

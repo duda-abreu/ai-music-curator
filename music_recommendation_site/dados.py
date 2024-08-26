@@ -15,4 +15,4 @@ def fetch_data():
         return df
     except Exception as e:
         print(f"Error in fetch_data: {e}")
-        return pd.DataFrame()  # Return an empty DataFrame on error
+        return pd.DataFrame() 
